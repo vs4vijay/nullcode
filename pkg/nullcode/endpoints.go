@@ -14,7 +14,10 @@ import (
 // }
 
 func MakeAddEndpoint(svc Service) endpoint.Endpoint {
+	fmt.Println("MakeAddEndpoint")
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
+		fmt.Println("MakeAddEndpoint > func")
+
 		addCodeRequest := request.(CodeRequest)
 		fmt.Println("addCodeRequest", addCodeRequest)
 

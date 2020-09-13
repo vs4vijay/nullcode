@@ -5,8 +5,13 @@ import (
 	"log"
 	"net/http"
 	"nullcode/pkg/nullcode"
+	"os"
 
 	httptransport "github.com/go-kit/kit/transport/http"
+)
+
+var (
+	port = os.Getenv("PORT")
 )
 
 func main() {
@@ -22,5 +27,8 @@ func main() {
 
 	http.Handle("/api/v1/codes", addHandler)
 
-	log.Fatal(http.ListenAndServe(":7777", nil))
+	if port == "" {
+		port = "7777"
+	}
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
